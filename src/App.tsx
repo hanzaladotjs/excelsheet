@@ -1,53 +1,22 @@
-
-import './App.css'
+import "./App.css";
 
 function App() {
+  const rows = 100;
+  const cols = 100;
 
-  
-
-
- 
- 
   return (
-    <div className='flex flex-col m-10'>
-      <div className='flex'>
-        <div className='border p-3'> </div>
-        <div className='border p-3'>  </div>
-        <div className='border p-3'> </div>
-        <div className='border p-3'> </div>
-        <div className='border p-3'> </div>
-      </div>
-      <div className='flex'>
-        <div className='border p-3'></div>
-        <div className='border p-3'> </div>
-        <div className='border p-3'> </div>
-        <div className='border p-3'> </div>
-        <div className='border p-3'> </div>
-      </div>
-      <div className='flex'>
-        <div className='border p-3'></div>
-        <div className='border p-3'> </div>
-        <div className='border p-3'> </div>
-        <div className='border p-3'> </div>
-        <div className='border p-3'> </div>
-      </div>
-      <div className='flex'>
-        <div className='border p-3'></div>
-        <div className='border p-3'> </div>
-        <div className='border p-3'> </div>
-        <div className='border p-3'> </div>
-        <div className='border p-3'> </div>
-      </div>
-      <div className='flex'>
-        <div className='border p-3'></div>
-        <div className='border p-3'> </div>
-        <div className='border p-3'> </div>
-        <div className='border p-3'> </div>
-        <div className='border p-3'> </div>
-      </div>
-
-      
+    <div className="m-10 flex flex-col">
+      {Array.from({ length: rows }).map((_, rowIndex) => (
+        <div key={`row-${rowIndex}`} className="flex">
+          {Array.from({ length: cols }).map((_, colsIndex) => (
+            <input
+              className="p-2 border"
+              key={`col-${colsIndex}-${rowIndex}`}
+            />
+          ))}
+        </div>
+      ))}
     </div>
-  )
-  }
-export default App
+  );
+}
+export default App;
