@@ -1,24 +1,31 @@
 
-
+import { useState } from "react";
 import "./App.css";
 import { FixedSizeGrid } from "react-window";
 
 function App() {
-  const rows = 1500;
-  const cols = 1500;
+
+  const [cellData, setCellData] = useState<Array<string>>([])
+  const rows = 10;
+  const cols = 10;
   const cellWidth = 70;
   const cellHeight = 40;
 
-  const Cell = ({ columnIndex, rowIndex, style }:any) => (
+  function handleInputValue (value: any) {
+    setCellData((prev) => [...prev, value])
+  }
+
+
+  const Cell = ({ columnIndex, rowIndex, style }: any) => (
     <div style={style} key={`cell-${rowIndex}-${columnIndex}`}>
-      <input
-        className="w-full border h-full"
-      />
+      <input onChange={(e) => handleInputValue(e.target.value) } className="w-full border h-full" />
     </div>
   );
 
+
   return (
-    <div style={{ margin: "2.5rem", display: "flex", flexDirection: "column" }}>
+    <div>
+      <div style={{}}>
       <FixedSizeGrid
         columnCount={cols}
         rowCount={rows}
@@ -29,8 +36,25 @@ function App() {
       >
         {Cell}
       </FixedSizeGrid>
+      <Print cellData={cellData}></Print>
+      </div>
+
     </div>
   );
+}
+
+export function Print ({cellData}:any) {
+  return (
+    <div>
+      <ul>
+      {cellData.map((index : any, cell: any) => (
+        
+          <li key={index}> {cell} </li>
+        
+      ))}
+      </ul>
+    </div>
+  )
 }
 
 export default App;
